@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #react-container div {
+      font-size: 2em;
+      cursor: pointer;
+    }
+    #react-container {
+      width: fit-content;
+      max-width: 20em;
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+    }
+
+    #react-container div:hover {
+      transform: scale(1.2);
+      transition: all 0.4s ease-in-out;
+    }
+
+    #react-container div.animate {
+      /* transform rotate and scale */
+      transform: rotate(20deg) scale(3);
+    }
+    #adBody {
+      width: XXAD_WIDTHXX;
+      height: XXAD_HEIGHTXX;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: end;
+      background-image: url("XXBACKGROUND_IMAGEXX");
+      margin: auto;
+      background-size: cover;
+    }
+  </style>
+  <body style="margin: 0px; padding: 0px;">
+    <div id="adBody" style="margin: 0px; padding: 0px;">
+      <div id="react-container"></div>
+    </div>
+  </body>
+  <script>
+    const startEmoji = ["❤️"];
+    const extraEmojis = ["😕", "😐", "🙂", "😁", "😍"];
+
+    let reactContainer = document.getElementById("react-container");
+    startEmoji.forEach((emoji) => {
+      let emojiElement = document.createElement("div");
+      emojiElement.innerText = emoji;
+      reactContainer.appendChild(emojiElement);
+    });
+
+    // on hover on reactContainer add extraEmojis to startEmoji
+    reactContainer.addEventListener("mouseover", () => {
+      extraEmojis.forEach((emoji) => {
+        if (
+          reactContainer.children.length >=
+          startEmoji.length + extraEmojis.length
+        ) {
+          return;
+        }
+        let emojiElement = document.createElement("div");
+        emojiElement.innerText = emoji;
+        reactContainer.appendChild(emojiElement);
+      });
+    });
+
+    // on mouseleave remove extraEmojis
+    reactContainer.addEventListener("mouseleave", () => {
+      while (reactContainer.children.length > startEmoji.length) {
+        reactContainer.removeChild(reactContainer.lastChild);
+      }
+    });
+
+    // add animation on click
+    reactContainer.addEventListener("click", (e) => {
+      let clickedEmoji = e.target;
+      clickedEmoji.classList.add("animate");
+      setTimeout(() => {
+        clickedEmoji.classList.remove("animate");
+      }, 1000);
+    });
+  </script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@700&display=swap");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .slider-container {
+      border: 2px solid black;
+      width: 80%;
+      border-radius: 10px;
+      background-color: XXCONTAINER_BACKGROUND_COLORXX;
+      padding: 1em;
+      margin-bottom: 2rem;
+      max-width: 30em;
+    }
+
+    .slider-container__title {
+      text-align: center;
+      color: XXTITLE_TEXT_COLORXX;
+    }
+
+    .range-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 5/1;
+    }
+
+    .range-slider_input {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      transform: translateY(-50%);
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      opacity: 0;
+      margin: 0;
+    }
+
+    .range-slider_input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 8%;
+      min-width: 2em;
+      aspect-ratio: 1/1;
+      cursor: pointer;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .range-slider_input::-moz-range-thumb {
+      width: 8%;
+      min-width: 2em;
+      aspect-ratio: 1/1;
+      cursor: pointer;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .range-slider_thumb {
+      min-width: 2.5rem;
+      aspect-ratio: 1/1;
+      border: 0.15rem solid #303030;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: XXTHUMB_TEXT_COLORXX;
+      z-index: 2;
+    }
+
+    .range-slider_line {
+      height: 0.2em;
+      width: 100%;
+      background-color: #e1e1e1;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .range-slider_line-fill {
+      position: absolute;
+      height: 0.2em;
+      width: 0;
+      background-color: XXSLIDER_FILL_COLORXX;
+    }
+
+    #adBody {
+      width: XXAD_WIDTHXX;
+      height: XXAD_HEIGHTXX;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      background-image: url("XXBACKGROUND_IMAGEXX");
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+  <body>
+    <div id="adBody">
+      <div class="slider-container">
+        <p class="slider-container__title">XXTITLE_TEXTXX</p>
+        <div class="range-slider">
+          <div id="slider_thumb" class="range-slider_thumb"></div>
+          <div class="range-slider_line">
+            <div id="slider_line" class="range-slider_line-fill"></div>
+          </div>
+          <input
+            id="slider_input"
+            class="range-slider_input"
+            type="range"
+            value="20"
+            min="0"
+            max="100"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const slider_input = document.getElementById("slider_input"),
+      slider_thumb = document.getElementById("slider_thumb"),
+      slider_line = document.getElementById("slider_line"),
+      emojis = ["😕", "😐", "🙂", "😁", "😍"];
+
+    function showSliderValue() {
+      slider_thumb.innerText = getEmoji(slider_input.value);
+      const bulletPosition = slider_input.value / slider_input.max,
+        space = slider_input.offsetWidth - slider_thumb.offsetWidth;
+
+      slider_thumb.style.left = bulletPosition * space + "px";
+      slider_line.style.width = slider_input.value + "%";
+    }
+
+    showSliderValue();
+    window.addEventListener("resize", showSliderValue);
+    slider_input.addEventListener("input", showSliderValue, false);
+
+    function getEmoji(value) {
+      let emojiIndex = Math.floor(value / 20);
+      if (emojiIndex > 4) emojiIndex = 4;
+      return emojis[emojiIndex];
+    }
+  </script>
+</html>

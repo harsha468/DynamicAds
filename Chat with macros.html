@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div class="chat-bg-image">
+        <div class="chat" id="chat-screen">
+        </div>
+        <div style="padding:10px">
+            <input type="text" id="search" class="search" placeholder="Search">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script>
+        var ouput = null;
+        let step = -1;
+        let questions = XXQUESTIONSXX;
+
+        var input = document.getElementById("search");
+
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                if (input.value.trim() != '') {
+                    addMessage(input.value)
+                    addOptions();
+                    input.value = ''
+                }
+            }
+        });
+
+        addOptions();
+        addOptions();
+        function addOptions(text) {
+            step++;
+            question = questions.filter(question => question.step == step)[0];
+            if (question != undefined) {
+                if (step != questions.length - 1) {
+                    document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-left"><div class="chat-text-outlined sender" id="sender">${question.question}</div></div>`);
+                }
+
+                if (question.options != undefined) {
+                    question.options.forEach(option => {
+                        document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-left options"><button class="options-button sender" id="sender" onclick="addMessage('${option.text}', true)">${option.text}</button></div>`);
+                    });
+                }
+
+                if (question.creatives != undefined) {
+                    if(question.creativesText != undefined) {
+                    document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-left"><div class="chat-text-outlined sender" id="sender">${question.creativesText}</div></div>`);
+
+                    }
+                    question.creatives.forEach(creative => {
+                        document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `
+                        <a href="${creative.redirectionURL}" target="_blank">
+                            <div class="creative">
+                                <div class="creative-img-div">
+                                    <img class="creative-img" src="${creative.imageURL}">
+                                </div>
+                                <div style="padding: 10px;">
+                                    ${creative.title}
+                                </div>
+                            </div>
+                        </a>
+                        `);
+                    });
+                }
+            }
+            if (step == questions.length - 1) {
+                document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `Heyyyy`);
+            }
+            scrollToBottom();
+        }
+
+        function addMessage(msg, isOption) {
+            document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-right"><button class="chat-text">${msg}</button></div>`);
+            if (isOption) {
+                addOptions();
+            }
+        }
+
+        function scrollToBottom() {
+            document.getElementById("chat-screen").scrollTo({ top: 10000, behavior: "smooth" });
+        }
+    </script>
+</body>
+
+</html>
+
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .chat {
+        max-height: 70%;
+        overflow: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creative {
+        font-size: large;
+        background-color: XXCREATIVE_BACKGROUNDCOLORXX;
+        color: XXCREATIVE_TEXTCOLORXX;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+        align-items: center;
+    }
+
+    .creative-img-div {
+        width: 100px;
+        height: 100px;
+    }
+
+    .creative-img {
+        border-radius: 10px 0px 0px 10px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .chat::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .chat-bg-image {
+        background: url("XXBACKGROUND_IMAGEXX");
+        height: XXAD_HEIGHTXX;
+        width: XXAD_WIDTHXX;
+        background-size: cover;
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+    }
+
+    .options-left {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        padding: 10px;
+        padding-right: 40px;
+    }
+
+    .options {
+        padding-left: 40px;
+    }
+
+    .options-button {
+        border: none;
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: XXOPTIONS_BACKGROUND_COLORXX;
+    }
+
+    .options-right {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        padding: 10px;
+        padding-left: 40px;
+    }
+
+    .chat-text {
+        background-color: XXSENDER_BACKGROUND_COLORXX;
+        border: none;
+        color: XXSENDER_TEXT_COLORXX;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .chat-text-outlined {
+        border: none;
+        color: XXRECEIVER_TEXT_COLORXX;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: XXRECEIVER_BACKGROUND_COLORXX;
+    }
+
+    .sender {
+        cursor: pointer;
+    }
+
+    .search {
+        width: 95%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+</style>

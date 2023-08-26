@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div class="chat-bg-image">
+        <div class="chat" id="chat-screen">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script>
+        var ouput = null;
+        let step = 0;
+        // const options =
+        // {
+        //     id: 1,
+        //     options: [
+        //         {
+        //             id: 2,
+        //             text: 'Cars',
+        //             options: [
+        //                 {
+        //                     id: 5,
+        //                     text: 'Sedan',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'Verito',
+        //                             imageURL: 'https://images.unsplash.com/photo-1633867179970-c54688bcfa33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+        //                             title: 'Made like a gun, goes like a bullet',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.mahindra.com/'
+        //                         },
+        //                         {
+        //                             id: 12,
+        //                             text: 'Logan'
+        //                         }
+        //                     ]
+        //                 },
+        //                 {
+        //                     id: 6,
+        //                     text: 'SUV',
+        //                     options: [
+        //                         {
+        //                             id: 13,
+        //                             text: 'XUV 500'
+        //                         },
+        //                         {
+        //                             id: 14,
+        //                             text: 'TUV 300'
+        //                         }
+        //                     ]
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             id: 3,
+        //             text: 'Bikes',
+        //             options: [
+        //                 {
+        //                     id: 7,
+        //                     text: '2 1'
+        //                 },
+        //                 {
+        //                     id: 8,
+        //                     text: '2 2'
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             id: 4,
+        //             text: 'Autos',
+        //             options: [
+        //                 {
+        //                     id: 9,
+        //                     text: '3 1'
+        //                 },
+        //                 {
+        //                     id: 10,
+        //                     text: '3 2'
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }
+        const options = XXOPTIONSXX;
+        // {
+        //     id: 1,
+        //     options: [
+        //         {
+        //             id: 2,
+        //             text: 'BMW Cars',
+        //             options: [
+        //                 {
+        //                     id: 5,
+        //                     text: 'BMW i Series',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW iX',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',
+        //                             title: 'THE FIRST ALL-ELECTRIC BMW iX: JOY. BORN AGAIN.',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/bmw-i/bmw-ix-new/2021/bmw-ix.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW i4',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',
+        //                             title: 'The first-ever fully-electric BMW',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/bmw-i/i4/2021/bmw-i4-highlights.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW i7',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',
+        //                             title: 'The first-ever fully-electric BMW',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/bmw-i/i7/2022/bmw-i7-sedan-highlights.html'
+        //                         },
+        //                     ]
+        //                 },
+        //                 {
+        //                     id: 6,
+        //                     text: 'BMW X',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW X7',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/x-series/x7/2023/bmw-x-series-newx7-desktop.png/jcr:content/renditions/cq5dam.resized.img.1680.large.time1669711145233.png',
+        //                             title: 'Forwadism',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/x-series/x7/2022/bmw-x7-overview.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW X5',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/Images/all-models/BMW%20Series/BMW%20X%20series/x5-2022/1680%20x%20756_1.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1664892818918.jpg',
+        //                             title: 'The first-ever fully-electric BMW',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/x-series/X5/2021/bmw-x5-highlights.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW X1',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/x-series/x1/2023/x1-header-banner-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1674564361037.jpg',
+        //                             title: 'XCEED',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/x-series/X1/2022/bmw-x1-overview.html'
+        //                         },
+        //                     ]
+        //                 },
+        //                 {
+        //                     id: 7,
+        //                     text: 'BMW M',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW M340i',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/3-series/M340i/1680x756.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1670416296485.jpg',
+        //                             title: 'THE 3',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/3-series/sedan/2022/bmw-3-series-sedan-overview.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW M8 Competition Coupé',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/m-series/M8-competition/m8-competition-coupe-header.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1664366514873.jpg',
+        //                             title: 'The first-ever fully-electric BMW',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw.in/en/all-models/m-series/m8-coupe/2022/bmw-m8-competition-coupe-overview.html'
+        //                         }
+        //                     ]
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             id: 3,
+        //             text: 'BMW Bikes',
+        //             options: [
+        //                 {
+        //                     id: 5,
+        //                     text: 'BMW Sport',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'S 1000 RR',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',
+        //                             title: 'S 1000 RR',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/sport/s1000rr.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'M 1000 RR',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',
+        //                             title: 'M 1000 RR',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/sport/m1000rr.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'BMW i7',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',
+        //                             title: 'BMW i7',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/sport/g310rr.html'
+        //                         },
+        //                     ]
+        //                 },
+        //                 {
+        //                     id: 5,
+        //                     text: 'BMW Tour',
+        //                     options: [
+        //                         {
+        //                             id: 11,
+        //                             text: 'R 1250 RT',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',
+        //                             title: 'R 1250 RT',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/tour/r1250rt.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'K 1600 B',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',
+        //                             title: 'K 1600 B',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/tour/k1600b.html'
+        //                         },
+        //                         {
+        //                             id: 11,
+        //                             text: 'K1600 Grand America',
+        //                             imageURL: 'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',
+        //                             title: 'K1600 Grand America',
+        //                             buttonText: 'Go to Website',
+        //                             redirectURL: 'https://www.bmw-motorrad.in/en/models/tour/k1600-grand-america.html'
+        //                         },
+        //                     ]
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }
+
+        function getOptionById(opts, ids) {
+            let o = opts
+            if (opts.id == ids) {
+                ouput = opts
+                return ouput;
+            }
+
+            o = opts.options
+            if (o != undefined) {
+                o.forEach(element => {
+                    getOptionById(element, ids)
+                });
+            }
+        }
+
+        var isFinalStep = options.length == step;
+        addOptions();
+        function addOptions(id) {
+            var opt = null;
+            if (id == undefined) {
+                getOptionById(options, 1);
+            }
+            else {
+                getOptionById(options, id);
+            }
+            if (ouput != undefined && ouput.options != undefined) {
+                if (id != undefined)
+                    addMessage(ouput.text);
+                ouput.options.forEach(opt => {
+                    document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-left"><button class="chat-text-outlined sender" id="sender" onclick="addOptions(${opt.id})">${opt.text}</button></div>`);
+                });
+            }
+            else {
+                if (ouput.imageURL != undefined) {
+                    document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="creative"><img
+                src="${ouput.imageURL}" />
+            <div class="creative-text">
+                ${ouput.title}
+                <a href="${ouput.redirectURL}" target="_blank">
+                    <button class="redirect-button"  style="cursor:pointer">
+                        ${ouput.buttonText}
+                    </button>
+                </a>
+            </div>
+        </div>`);
+                }
+                // document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<a href="https://www.google.com" target="_blank">Hiiiii</a>`);
+            }
+            scrollToBottom();
+        }
+
+        function addMessage(msg) {
+            document.getElementById("chat-screen").insertAdjacentHTML('beforeend', `<div class="options-right"><button class="chat-text">${msg}</button></div>`);
+        }
+
+        function scrollToBottom() {
+            document.getElementById("chat-screen").scrollTo({ top: 10000, behavior: "smooth" });
+        }
+    </script>
+</body>
+
+</html>
+
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .chat {
+        overflow: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .creative {
+        width: 300px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        font-size: large;
+        background-color: white;
+        flex-direction: column;
+        border-radius: 15px;
+    }
+
+    .creative img {
+        border-radius: 15px 15px 0px 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .creative-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: large;
+        background-color: white;
+        padding: 20px;
+    }
+
+    .redirect-button {
+        background-color: XXREDIRECT_BUTTON_BACKGROUND_COLORXX;
+        border-radius: 5px;
+        border: none;
+        color: XXREDIRECT_BUTTON_Text_COLORXX;
+        padding: 10px;
+    }
+
+    .chat::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .chat-bg-image {
+        background: url("XXBACKGROUND_IMAGEXX");
+        height: XXAD_HEIGHTXX;
+        width: XXAD_WIDTHXX;
+        background-size: cover;
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+    }
+
+    .options-left {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        padding: 10px;
+        padding-right: 40px;
+    }
+
+    .options-right {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        padding: 10px;
+        padding-left: 40px;
+    }
+
+    .chat-text {
+        background-color: XXSENDER_BACKGROUND_COLORXX;
+        border: none;
+        color: XXSENDER_TEXT_COLORXX;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .chat-text-outlined {
+        color: XXRECEIVER_TEXT_COLORXX;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: XXRECEIVER_BACKGROUND_COLORXX;
+        border: none;
+    }
+
+    .sender {
+        cursor: pointer;
+    }
+</style>

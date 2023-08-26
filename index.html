@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body style="background-color: #292b2c; ">
+    <div id="iframe-div">
+    </div>
+    <script>
+        let customValues = [{
+            type: 1,
+            adHeight: '700px',
+            adWidth: '350px',
+            backgroundImage: 'https://images.unsplash.com/photo-1622185134994-3e87da0f1bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            optionsBackgroundColor: '#a4a1a2',
+            senderTextColor: 'white',
+            receiverTextColor: 'black',
+            senderBackgroundColor: '#a10d16',
+            questions: `[{step:0,question:'Willing to know stores near by you? please provide us the following information.'},{step:1,question:'Name'},{step:2,question:'Contact Number'},{step:3,question:'Gender',options:[{id:1,text:'Male'},{id:2,text:'Female'},{id:3,text:'Other'}]},{step:4,question:'City',options:[{id:1,text:'Hyderabad'},{id:2,text:'Bangalore'},{id:3,text:'Channai'}]},{step:5,question:'Pincode'},{step:6,creativesText:'Here are the stores near you.',creatives:[{id:1,imageURL:'https://images.unsplash.com/photo-1644223514337-1058a96b4a5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',title:'Royal Enfield Showroom - VVC Automobiles',redirectionURL:'https://www.royalenfield.com/'},{id:2,imageURL:'https://images.unsplash.com/photo-1530248809527-ee069dc8373a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80',title:'Royal Enfield Showroom - Jayashree',redirectionURL:'https://www.royalenfield.com/'},{id:3,imageURL:'https://images.unsplash.com/photo-1588397991453-e91185a8b2e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',title:'Royal Enfield Showroom - SVR Motors & Engineering',redirectionURL:'https://www.royalenfield.com/'}]}]`,
+            receiverBackgroundColor: '#7f878a',
+            creativeBackgroundColor: 'white',
+            creativeTextColor: 'black'
+        },
+        {
+            type: 2,
+            adHeight: '700px',
+            adWidth: '350px',
+            backgroundImage: 'https://images.unsplash.com/photo-1512206818698-0038a42885fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80',
+            optionsBackgroundColor: '#a4a1a2',
+            senderTextColor: 'white',
+            receiverTextColor: '#442f29',
+            senderBackgroundColor: '#0a61cc',
+            questions: `[{step:0,question:'Willing to know stores near by you? please provide us the following information.'},{step:1,question:'Name'},{step:2,question:'Contact Number'},{step:3,question:'Gender',options:[{id:1,text:'Male'},{id:2,text:'Female'},{id:3,text:'Other'}]},{step:4,question:'City',options:[{id:1,text:'Hyderabad'},{id:2,text:'Bangalore'},{id:3,text:'Channai'}]},{step:5,question:'Pincode'},{step:6,creativesText:'Here are the stores near you.',creatives:[{id:1,imageURL:'https://images.unsplash.com/photo-1644223514337-1058a96b4a5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',title:'Royal Enfield Showroom - VVC Automobiles',redirectionURL:'https://www.royalenfield.com/'},{id:2,imageURL:'https://images.unsplash.com/photo-1530248809527-ee069dc8373a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80',title:'Royal Enfield Showroom - Jayashree',redirectionURL:'https://www.royalenfield.com/'},{id:3,imageURL:'https://images.unsplash.com/photo-1588397991453-e91185a8b2e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',title:'Royal Enfield Showroom - SVR Motors & Engineering',redirectionURL:'https://www.royalenfield.com/'}]}]`,
+            receiverBackgroundColor: '#7f878a',
+            creativeBackgroundColor: 'white',
+            creativeTextColor: 'black',
+            redirectButtonBackgroundColor: 'black',
+            redirectTextColor: 'white',
+            options: `{id:1,options:[{id:2,text:'BMW Cars',options:[{id:4,text:'BMW i Series',options:[{id:7,text:'BMW iX',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',title:'THE FIRST ALL-ELECTRIC BMW iX: JOY. BORN AGAIN.',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/bmw-i/bmw-ix-new/2021/bmw-ix.html'},{id:8,text:'BMW i4',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',title:'The first-ever fully-electric BMW',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/bmw-i/i4/2021/bmw-i4-highlights.html'},{id:9,text:'BMW i7',imageURL:'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',title:'The first-ever fully-electric BMW',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/bmw-i/i7/2022/bmw-i7-sedan-highlights.html'},]},{id:5,text:'BMW X',options:[{id:10,text:'BMW X7',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/x-series/x7/2023/bmw-x-series-newx7-desktop.png/jcr:content/renditions/cq5dam.resized.img.1680.large.time1669711145233.png',title:'Forwadism',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/x-series/x7/2022/bmw-x7-overview.html'},{id:11,text:'BMW X5',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/Images/all-models/BMW%20Series/BMW%20X%20series/x5-2022/1680%20x%20756_1.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1664892818918.jpg',title:'The first-ever fully-electric BMW',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/x-series/X5/2021/bmw-x5-highlights.html'},{id:12,text:'BMW X1',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/x-series/x1/2023/x1-header-banner-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1674564361037.jpg',title:'XCEED',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/x-series/X1/2022/bmw-x1-overview.html'},]},{id:6,text:'BMW M',options:[{id:13,text:'BMW M340i',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/3-series/M340i/1680x756.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1670416296485.jpg',title:'THE 3',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/3-series/sedan/2022/bmw-3-series-sedan-overview.html'},{id:14,text:'BMW M8 Competition Coupé',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/m-series/M8-competition/m8-competition-coupe-header.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1664366514873.jpg',title:'The first-ever fully-electric BMW',buttonText:'Go to Website',redirectURL:'https://www.bmw.in/en/all-models/m-series/m8-coupe/2022/bmw-m8-competition-coupe-overview.html'}]}]},{id:3,text:'BMW Bikes',options:[{id:5,text:'BMW Sport',options:[{id:15,text:'S 1000 RR',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',title:'S 1000 RR',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/sport/s1000rr.html'},{id:16,text:'M 1000 RR',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',title:'M 1000 RR',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/sport/m1000rr.html'},{id:17,text:'BMW i7',imageURL:'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',title:'BMW i7',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/sport/g310rr.html'},]},{id:5,text:'BMW Tour',options:[{id:18,text:'R 1250 RT',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/IXseries/Homepage_Banner_1680x756_03.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1639379272336.jpg',title:'R 1250 RT',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/tour/r1250rt.html'},{id:19,text:'K 1600 B',imageURL:'https://www.bmw.in/content/dam/bmw/marketIN/bmw_in/all-models/i-series/i4/2021/bmw-i4-homepage-banner.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1652964159399.jpg',title:'K 1600 B',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/tour/k1600b.html'},{id:20,text:'K1600 Grand America',imageURL:'https://www.bmw.in/content/dam/bmw/common/all-models/i-series/i7/2022/Highlights/bmw-7-series-i7-sp-desktop.jpg/jcr:content/renditions/cq5dam.resized.img.1680.large.time1649928545350.jpg',title:'K1600 Grand America',buttonText:'Go to Website',redirectURL:'https://www.bmw-motorrad.in/en/models/tour/k1600-grand-america.html'}]}]}]}`
+        },
+        {
+            type: 3,
+            adHeight: "700px",
+            adWidth: "350px",
+            backgroundImage: "./assets/sneakerx-ad.png",
+            containerBackgroundColor: "#fed1499a",
+            titleTextColor: "black",
+            thumbTextColor: "#303030",
+            sliderFillColor: "#303030",
+            titleText: "Rate from 1 to 100?",
+        },
+        {
+            type: 4,
+            adHeight: "700px",
+            adWidth: "350px",
+            backgroundImage: "./assets/black-friday-sale.gif",
+            containerBackgroundColor: "grey",
+            titleTextColor: "black",
+            thumbTextColor: "grey",
+            sliderFillColor: "black",
+            titleText: "Excited For the Sale?",
+        },
+        {
+            type: 5,
+            adHeight: "700px",
+            adWidth: "350px",
+            backgroundImage: "./assets/food-offer.png",
+        },
+        {
+            type: 6,
+            label: {
+                borderColor: "white",
+                selectorColor: "#392873",
+                hoverColor: "#31adeb",
+                optionColor: "#392873"
+            },
+            pollOptions: `[
+                { id: 1, text: "HTML", percent: 30 },
+                { id: 2, text: "Java", percent: 20 },
+                { id: 3, text: "Python", percent: 40 },
+                { id: 4, text: "jQuery", percent: 10 },
+            ]`,
+            backgroundImg: "./assets/coding-ad.png",
+            backgroundColor: "white",
+            maxWidth: '454px',
+            widthPercentage: '350px',
+            height: '700px',
+            color: 'white',
+            title: 'Which Language You Choose ?'
+        }
+        ];
+        var i = 0;
+        customValues.forEach(customValue => {
+            var xhr = new XMLHttpRequest();
+            if (customValue.type == 1) {
+                xhr.open("GET", "Chat with macros.html", true);
+            }
+            else if (customValue.type == 2) {
+                xhr.open("GET", "Chat with Select Ads.html", true);
+            }
+            else if (customValue.type == 3) {
+                xhr.open("GET", "slider.html", true);
+            }
+            else if (customValue.type == 4) {
+                xhr.open("GET", "slider-emoji.html", true);
+            }
+            else if (customValue.type == 5) {
+                xhr.open("GET", "react-component.html", true);
+            }
+            else if (customValue.type == 6) {
+                xhr.open("GET", "dpoll.html", true);
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let iframeDiv = document.getElementById("iframe-div");
+                    let response = xhr.responseText;
+                    iframeDiv.insertAdjacentHTML('beforeend', `<iframe class="iframe" frameborder="0" scrolling="no" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";o.style.width=o.contentWindow.document.body.scrollWidth+"px";}(this));'></iframe>`)
+                    var iframe = document.getElementsByClassName("iframe");
+                    if (customValue.type == 1) {
+                        iframe[i++].srcdoc = applyCustomStyles(response, customValue);
+                    }
+                    else if (customValue.type == 2) {
+                        iframe[i++].srcdoc = applyCustomStylesSelectAds(response, customValue);
+                    }
+                    else if (customValue.type == 3 || customValue.type == 4) {
+                        iframe[i++].srcdoc = applyCustomStylesSlider(response, customValue);
+                    }
+                    else if (customValue.type == 5) {
+                        iframe[i++].srcdoc = applyCustomStylesReaction(response, customValue);
+                    }
+                    else if (customValue.type == 6) {
+                        iframe[i++].srcdoc = applyCustomStylesPoll(response, customValue);
+                    }
+                }
+            };
+            xhr.send();
+        });
+        function applyCustomStyles(response, customValue) {
+            response = response.replaceAll(
+                `XXBACKGROUND_IMAGEXX`,
+                customValue.backgroundImage
+            );
+            response = response.replaceAll(
+                `XXOPTIONS_BACKGROUND_COLORXX`,
+                customValue.optionsBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXSENDER_TEXT_COLORXX`,
+                customValue.senderTextColor
+            );
+            response = response.replaceAll(
+                `XXRECEIVER_TEXT_COLORXX`,
+                customValue.receiverTextColor
+            );
+            response = response.replaceAll(
+                `XXSENDER_BACKGROUND_COLORXX`,
+                customValue.senderBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXQUESTIONSXX`,
+                customValue.questions
+            );
+            response = response.replaceAll(
+                `XXRECEIVER_BACKGROUND_COLORXX`,
+                customValue.receiverBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXCREATIVE_BACKGROUNDCOLORXX`,
+                customValue.creativeBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXCREATIVE_TEXTCOLORXX`,
+                customValue.creativeTextColor
+            );
+            response = response.replaceAll(
+                `XXAD_HEIGHTXX`,
+                customValue.adHeight
+            );
+            response = response.replaceAll(
+                `XXAD_WIDTHXX`,
+                customValue.adWidth
+            );
+            return response;
+        }
+
+        function applyCustomStylesSelectAds(response, customValue) {
+            response = response.replaceAll(
+                `XXBACKGROUND_IMAGEXX`,
+                customValue.backgroundImage
+            );
+            response = response.replaceAll(
+                `XXOPTIONS_BACKGROUND_COLORXX`,
+                customValue.optionsBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXSENDER_TEXT_COLORXX`,
+                customValue.senderTextColor
+            );
+            response = response.replaceAll(
+                `XXRECEIVER_TEXT_COLORXX`,
+                customValue.receiverTextColor
+            );
+            response = response.replaceAll(
+                `XXSENDER_BACKGROUND_COLORXX`,
+                customValue.senderBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXQUESTIONSXX`,
+                customValue.questions
+            );
+            response = response.replaceAll(
+                `XXRECEIVER_BACKGROUND_COLORXX`,
+                customValue.receiverBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXCREATIVE_BACKGROUNDCOLORXX`,
+                customValue.creativeBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXCREATIVE_TEXTCOLORXX`,
+                customValue.creativeTextColor
+            );
+            response = response.replaceAll(
+                `XXAD_HEIGHTXX`,
+                customValue.adHeight
+            );
+            response = response.replaceAll(
+                `XXAD_WIDTHXX`,
+                customValue.adWidth
+            );
+            response = response.replaceAll(
+                `XXREDIRECT_BUTTON_BACKGROUND_COLORXX`,
+                customValue.redirectButtonBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXREDIRECT_BUTTON_Text_COLORXX`,
+                customValue.redirectTextColor
+            );
+            response = response.replaceAll(
+                `XXOPTIONSXX`,
+                customValue.options
+            );
+            return response;
+        }
+
+        function applyCustomStylesSlider(response, customValue) {
+            response = response.replaceAll(
+                `XXBACKGROUND_IMAGEXX`,
+                customValue.backgroundImage
+            );
+            response = response.replaceAll(`XXAD_HEIGHTXX`, customValue.adHeight);
+            response = response.replaceAll(`XXAD_WIDTHXX`, customValue.adWidth);
+            response = response.replaceAll(
+                `XXCONTAINER_BACKGROUND_COLORXX`,
+                customValue.containerBackgroundColor
+            );
+            response = response.replaceAll(
+                `XXTITLE_TEXT_COLORXX`,
+                customValue.titleTextColor
+            );
+            response = response.replaceAll(
+                `XXTHUMB_TEXT_COLORXX`,
+                customValue.thumbTextColor
+            );
+            response = response.replaceAll(
+                `XXSLIDER_FILL_COLORXX`,
+                customValue.sliderFillColor
+            );
+            response = response.replaceAll(
+                `XXTITLE_TEXTXX`,
+                customValue.titleText
+            );
+            return response;
+        }
+
+        function applyCustomStylesReaction(response, customValue) {
+            response = response.replaceAll(
+                `XXBACKGROUND_IMAGEXX`,
+                customValue.backgroundImage
+            );
+            response = response.replaceAll(`XXAD_HEIGHTXX`, customValue.adHeight);
+            response = response.replaceAll(`XXAD_WIDTHXX`, customValue.adWidth);
+            console.log(response);
+            return response;
+        }
+
+        function applyCustomStylesPoll(response, customValue) {
+
+            response = response.replace(
+                `XXBACKGROUND_COLORXX`,
+                customValue.backgroundColor
+            );
+            response = response.replace(
+                `XXLABEL_BACKGROUND_COLORXX`,
+                customValue.label.borderColor
+            );
+            response = response.replace(
+                `XXLABEL_BACKGROUND_COLORXX`,
+                customValue.label.borderColor
+            );
+            response = response.replace(
+                `XXLABEL_HOVER_COLORXX`,
+                customValue.label.hoverColor
+            );
+            response = response.replace(
+                `XXLABEL_SELECTED_COLORXX`,
+                customValue.label.selectorColor
+            );
+            response = response.replaceAll(
+                `XXOPTION_COLORXX`, customValue.label.optionColor
+            );
+            response = response.replaceAll(
+                `XXBACKGROUND_IMGXX`, customValue.backgroundImg
+            );
+            response = response.replaceAll(
+                `XXMAX_WIDTHXX`, customValue.maxWidth
+            );
+            response = response.replaceAll(
+                `XXWIDTH_PERCENTXX`, customValue.widthPercentage
+            );
+            response = response.replaceAll(
+                `XXHEIGHTXX`, customValue.height
+            );
+            response = response.replaceAll(
+                `XXCOLORXX`, customValue.color
+            );
+            response = response.replaceAll(
+                `XXOPTIONSXX`, customValue.pollOptions
+            );
+            response = response.replaceAll(
+                `XXTITLEXX`, customValue.title
+            );
+
+            return response;
+        }
+    </script>
+</body>
+<style>
+    .iframe {
+        margin: 10px;
+    }
+</style>
+
+</html>
